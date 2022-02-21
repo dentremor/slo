@@ -1,5 +1,4 @@
-import click
-import time
+import click, time, asyncio
 from lib.enumerate import enumerate
 from utils.url import check_url
 

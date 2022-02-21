@@ -1,10 +1,10 @@
-import imp
+import imp, asyncio
 from typing import Generator
-from lib.wordlist.read import parse_wordlist
+from slo.lib.read import parse_wordlist
 from lib.request import request
 
 
-def enumerate(path: str, url: str):
+async def enumerate(path: str, url: str):
    """Enumerates over wordlist and vreates a request for each word
    
    Parameters
@@ -17,7 +17,6 @@ def enumerate(path: str, url: str):
 
    wordlist = parse_wordlist(path)
    for word in wordlist:
-      status_code, size = request(word, url)
+      status_code, size = await request(word, url)
       if status_code != 404:
          print('==> {}/ (size: {}| status: {})'.format(word, size, status_code))
-   print()
