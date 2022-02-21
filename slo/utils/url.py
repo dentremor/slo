@@ -1,7 +1,5 @@
 import validators
 import requests
-from requests.adapters import HTTPAdapter
-from requests.packages.urllib3.util.retry import Retry
 
 def check_url(url: str) -> bool:
     """Check if url is valid and can be reached
