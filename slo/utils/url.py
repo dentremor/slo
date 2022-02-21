@@ -1,5 +1,7 @@
 import validators
 import requests
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 
 def check_url(url: str) -> bool:
     """Check if url is valid and can be reached
@@ -30,8 +32,12 @@ def is_reachable(url: str) -> bool:
     bool 
         true if server responds with statuscode 200 OK
     """
-
-    response = requests.get(url)
+    
+    try: 
+        response = requests.get(url)
+    except Exception as e: 
+        return False
+    
     if response.status_code == 200:
         return True
     else: 
