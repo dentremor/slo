@@ -17,5 +17,7 @@ def enumerate(path: str, url: str):
 
    wordlist = parse_wordlist(path)
    for word in wordlist:
-      statuscode, size = request(word, url)
-      print('==> {}/ (size: {}| status: {})'.format(word, size, statuscode))
+      status_code, size = request(word, url)
+      if status_code != 404:
+         print('==> {}/ (size: {}| status: {})'.format(word, size, status_code))
+   print()

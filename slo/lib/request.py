@@ -14,11 +14,10 @@ def request(word: str, url: str) -> Tuple[int, int]:
    Returns
    -------
    int
-      status code of the response if it is not 404
+      status code of the response
    int 
       response size
    """
    
    response = requests.get(url + '/' + word)
-   if response.status_code != 404:
-      return response.status_code, len(response.content)
+   return response.status_code, len(response.content)
