@@ -1,6 +1,6 @@
 import imp, asyncio
 from typing import Generator
-from slo.lib.read import parse_wordlist
+from lib.wordlist import parse_wordlist
 from lib.request import request
 
 
