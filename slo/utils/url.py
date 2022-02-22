@@ -15,7 +15,7 @@ def check_url(url: str) -> bool:
         true if url valid and server can be reached
     """
 
-    return validators.url(url) # and is_reachable(url)
+    return validators.url(url) and is_reachable(url)
 
 def is_reachable(url: str) -> bool: 
     """Check if url can be reached 
