@@ -1,7 +1,7 @@
-import requests, asyncio
+import requests
 from typing import Tuple
 
-async def request(word: str, url: str) -> Tuple[int, int]:
+def request(word: str, url: str):
    """Checks if a directory exists
    
    Parameters
@@ -19,5 +19,7 @@ async def request(word: str, url: str) -> Tuple[int, int]:
       response size
    """
    
-   response = await requests.get(url + '/' + word)
-   return response.status_code, len(response.content)
+   response = requests.get(url + '/' + word)
+   if response.status_code != 404:
+      print('==> {}/ (size: {}| status: {})'.format(word, len(response.content), response.status_code))
+   

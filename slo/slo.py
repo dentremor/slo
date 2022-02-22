@@ -1,4 +1,4 @@
-import click, time, asyncio
+import click, time
 from lib.enumerate import enumerate
 from utils.url import check_url
 
@@ -12,7 +12,7 @@ def cli(wordlist, url):
       raise click.BadParameter('URL has invalid syntax or is unreachable')
    
    enumerate(wordlist, url)
-
+  
    print(f"Completed Execution in {time.perf_counter() - start} seconds")
 
 if __name__ == '__main__':

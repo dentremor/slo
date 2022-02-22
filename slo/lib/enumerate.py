@@ -1,10 +1,10 @@
-import imp, asyncio
+from threading import Thread
 from typing import Generator
 from lib.wordlist import parse_wordlist
 from lib.request import request
 
 
-async def enumerate(path: str, url: str):
+def enumerate(path: str, url: str):
    """Enumerates over wordlist and vreates a request for each word
    
    Parameters
@@ -16,7 +16,11 @@ async def enumerate(path: str, url: str):
    """
 
    wordlist = parse_wordlist(path)
+   threads = []
    for word in wordlist:
-      status_code, size = await request(word, url)
-      if status_code != 404:
-         print('==> {}/ (size: {}| status: {})'.format(word, size, status_code))
+      process = Thread(target = request, args=[word, url])
+      process.start()
+      threads.append(process)
+      
+   for process in threads:
+      process.join()
